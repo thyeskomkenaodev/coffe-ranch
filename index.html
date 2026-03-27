@@ -3,32 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffe Ranch - Café do Campo</title>
+    <title>Coffee  Ranch - Café do Campo</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         /* ========== RESET E ESTILOS GLOBAIS ========== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
 
         :root {
-            --verde-principal: #2E7D32;
-            --verde-claro: #4CAF50;
-            --amarelo: #FFC107;
-            --dourado: #D4AF37;
-            --dourado-escuro: #B8860B;
-            --cinza-claro: #f8f5f0;
-            --branco: #FFFFFF;
-            --texto-escuro: #3e2e23;
-            --sombra: 0 4px 12px rgba(0,0,0,0.1);
+            --verde-principal: #1a432b; 
+            --verde-claro: #2c6e49;
+            --amarelo: #f9c22e;
+            --dourado: #d4af37;
+            --dourado-escuro: #b8860b;
+            --creme: #fdfbf7;
+            --cinza-claro: #f4f1eb;
+            --branco: #ffffff;
+            --texto-escuro: #2c2520;
+            --texto-mutado: #6e655f;
+            --sombra: 0 10px 30px rgba(0,0,0,0.06);
+            --sombra-hover: 0 15px 35px rgba(0,0,0,0.12);
+            --transicao: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         body {
             background-color: var(--cinza-claro);
             color: var(--texto-escuro);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
@@ -39,26 +50,38 @@
         }
 
         /* ========== TIPOGRAFIA ========== */
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            letter-spacing: -0.02em;
         }
 
         h2 {
             color: var(--verde-principal);
-            border-left: 6px solid var(--dourado);
-            padding-left: 15px;
-            margin: 30px 0 20px;
-            font-size: 2rem;
+            margin: 60px 0 30px;
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        h2 i {
+            color: var(--dourado);
+            font-size: 1.8rem;
         }
 
         /* ========== HEADER ========== */
         header {
-            background: linear-gradient(145deg, var(--verde-principal) 0%, #1b5e20 100%);
+            background: rgba(26, 67, 43, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             color: var(--branco);
-            padding: 15px 0;
-            box-shadow: var(--sombra);
-            border-bottom: 3px solid var(--dourado);
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transicao);
         }
 
         .header-content {
@@ -71,30 +94,26 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-
-        .logo i {
-            font-size: 2.5rem;
-            color: var(--dourado);
-            text-shadow: 2px 2px 0 var(--dourado-escuro);
+            gap: 15px;
         }
 
         .logo img {
-            width: 40px; /* Ajuste o tamanho conforme necessário */
-            height: 40px;
-            filter: drop-shadow(2px 2px 0px var(--dourado-escuro));
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            object-fit: contain;
+            background: white;
+            padding: 2px;
         }
 
         .logo h1 {
             font-size: 1.8rem;
             font-weight: 700;
-            letter-spacing: 1px;
         }
 
         .logo span {
-            color: var(--amarelo);
-            font-style: italic;
+            color: var(--dourado);
+            font-weight: 500;
         }
 
         nav ul {
@@ -106,421 +125,691 @@
         nav a {
             color: var(--branco);
             text-decoration: none;
+            font-size: 0.95rem;
             font-weight: 500;
-            padding: 5px 10px;
-            border-radius: 30px;
-            transition: all 0.3s;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: var(--transicao);
+            opacity: 0.85;
         }
 
         nav a:hover {
-            background-color: var(--dourado);
-            color: var(--verde-principal);
+            opacity: 1;
+            color: var(--dourado);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .carrinho-icone {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 40px;
+            right: 40px;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            background-color: var(--amarelo);
-            color: var(--verde-principal);
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-weight: bold;
+            background: linear-gradient(135deg, var(--verde-claro) 0%, var(--verde-principal) 100%);
+            color: var(--branco);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
             cursor: pointer;
-            transition: 0.3s;
+            box-shadow: 0 15px 35px rgba(26, 67, 43, 0.4);
+            transition: var(--transicao);
             border: 2px solid var(--dourado);
         }
 
         .carrinho-icone:hover {
-            background-color: var(--dourado);
-            color: var(--branco);
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 20px 45px rgba(26, 67, 43, 0.5);
+        }
+
+        .carrinho-icone i {
+            font-size: 1.5rem;
+        }
+
+        #carrinho-contador {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--amarelo);
+            color: var(--verde-principal);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 800;
+            border: 2px solid var(--branco);
         }
 
         /* ========== BANNER ========== */
         .banner {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
-            color: var(--branco);
+            height: 90vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 80px 20px;
-            border-radius: 0 0 50px 50px;
+            position: relative;
+            color: white;
             margin-bottom: 40px;
+            border-radius: 0 0 80px 80px;
+            overflow: hidden;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(26, 67, 43, 0.2), rgba(26, 67, 43, 0.8));
+            z-index: 1;
+        }
+
+        .banner .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .banner-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 80px 50px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            max-width: 850px;
+            width: 95%;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            animation: fadeInScale 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .banner-tagline {
+            display: block;
+            color: var(--dourado);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .banner h2 {
-            color: var(--branco);
-            border-left: none;
-            font-size: 3rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 5rem;
+            color: white;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -2px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .banner p {
-            font-size: 1.3rem;
-            margin: 20px 0;
-            background-color: rgba(0,0,0,0.3);
-            display: inline-block;
-            padding: 10px 30px;
-            border-radius: 40px;
-            border: 2px solid var(--dourado);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            opacity: 0.95;
+            max-width: 650px;
+            line-height: 1.6;
         }
 
+        .banner-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+
         .btn {
-            background-color: var(--dourado);
-            color: var(--verde-principal);
-            padding: 12px 35px;
-            border: none;
-            border-radius: 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
             display: inline-block;
-            border: 2px solid var(--amarelo);
+            background: var(--amarelo);
+            color: var(--verde-principal);
+            padding: 22px 50px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 1rem;
+            transition: var(--transicao);
+            box-shadow: 0 15px 35px rgba(249, 194, 46, 0.3);
+            border: 2px solid transparent;
         }
 
         .btn:hover {
-            background-color: var(--amarelo);
-            color: var(--texto-escuro);
-            transform: scale(1.05);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 20px 45px rgba(249, 194, 46, 0.4);
+            background: white;
+            border-color: var(--amarelo);
         }
+
 
         /* ========== PRODUTOS ========== */
         .produtos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+            margin: 40px 0;
         }
 
         .card-produto {
             background: var(--branco);
-            border-radius: 20px;
+            border-radius: 30px;
             overflow: hidden;
             box-shadow: var(--sombra);
-            transition: 0.3s;
-            border: 2px solid transparent;
-            position: relative;
+            transition: var(--transicao);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.02);
+            padding: 10px;
         }
 
         .card-produto:hover {
-            border-color: var(--dourado);
-            transform: translateY(-8px);
+            transform: translateY(-12px);
+            box-shadow: var(--sombra-hover);
         }
 
         .card-produto img {
             width: 100%;
-            height: 220px;
+            height: 240px;
             object-fit: cover;
-            border-bottom: 3px solid var(--verde-claro);
+            border-radius: 22px;
+            background: var(--cinza-claro);
+            transition: transform 0.6s ease;
+        }
+
+        .card-produto:hover img {
+            transform: scale(1.05);
         }
 
         .card-info {
-            padding: 20px;
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .card-info h3 {
+            font-size: 1.4rem;
             color: var(--verde-principal);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .card-info p {
-            color: #666;
+            color: var(--texto-mutado);
+            font-size: 0.9rem;
             margin-bottom: 15px;
-            font-size: 0.95rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .preco {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--dourado-escuro);
-            margin-bottom: 15px;
+            color: var(--texto-escuro);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
         }
 
         .preco small {
             font-size: 1rem;
-            color: var(--verde-principal);
-            font-weight: normal;
+            color: var(--texto-mutado);
+            font-weight: 400;
         }
 
-        .btn-add {
-            background-color: var(--verde-principal);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            border-radius: 40px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-add:hover {
-            background-color: var(--dourado);
-            color: var(--texto-escuro);
-        }
-
-        /* ========== CONTROLES DE QUANTIDADE ========== */
         .card-controls {
             display: flex;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 12px;
+            margin-top: auto;
         }
 
         .qtd-input {
-            width: 70px;
-            padding: 0 10px;
-            border: 1px solid #ccc;
-            border-radius: 40px;
+            width: 65px;
+            border: 1.5px solid #eee;
+            border-radius: 14px;
             text-align: center;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            font-weight: 600;
             outline: none;
+            transition: var(--transicao);
         }
 
-        .card-controls .btn-add {
-            width: auto;
+        .qtd-input:focus {
+            border-color: var(--verde-claro);
+        }
+
+        .btn-add {
             flex: 1;
-            margin-top: 0;
-        }
-
-        .carrinho-qtd {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 5px;
-        }
-
-        .btn-qtd {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            border: 1px solid #ccc;
-            background: #f9f9f9;
+            background: var(--verde-principal);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 14px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
             cursor: pointer;
-            font-weight: bold;
-            color: var(--verde-principal);
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 10px;
+            transition: var(--transicao);
+        }
+
+        .btn-add:hover {
+            background: var(--verde-claro);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(44, 110, 73, 0.2);
         }
 
         /* ========== CARRINHO LATERAL ========== */
         .carrinho-overlay {
             position: fixed;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            inset: 0;
+            background: rgba(26, 67, 43, 0.4);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
             display: none;
             justify-content: flex-end;
-            z-index: 1000;
+            transition: opacity 0.4s ease;
         }
 
         .carrinho-modal {
-            background-color: var(--branco);
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
+            background: white;
             height: 100%;
-            padding: 25px;
+
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -20px 0 60px rgba(0,0,0,0.1);
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
             overflow-y: auto;
-            box-shadow: -5px 0 20px rgba(0,0,0,0.2);
-            border-left: 4px solid var(--dourado);
+            max-height: 100vh;
         }
 
-        .carrinho-modal h2 {
-            color: var(--verde-principal);
-            border-left: none;
-            border-bottom: 2px solid var(--amarelo);
-            padding-bottom: 10px;
-            margin-top: 0;
+        /* Reduzir padding em telas menores para não apertar o conteúdo */
+        @media (max-width: 768px) {
+            .carrinho-modal {
+                padding: 25px 20px;
+            }
         }
 
-        /* ESTILOS DO FORMULÁRIO NO CARRINHO */
+        /* Custom scrollbar para manter a estética premium */
+        .carrinho-modal::-webkit-scrollbar {
+            width: 6px;
+        }
+        .carrinho-modal::-webkit-scrollbar-thumb {
+            background: var(--verde-claro);
+            border-radius: 10px;
+        }
+        .carrinho-modal::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        
+        .carrinho-overlay.active { display: flex; opacity: 1; }
+        .carrinho-overlay.active .carrinho-modal { transform: translateX(0); }
+
+        .carrinho-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1.5px solid #f8f8f8;
+        }
+
+        .carrinho-item-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .carrinho-qtd {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .btn-qtd {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1.5px solid #eee;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transicao);
+        }
+
+        .btn-qtd:hover {
+            border-color: var(--verde-claro);
+            color: var(--verde-claro);
+        }
+
+        .carrinho-item-remover {
+            color: #ff4d4f;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: auto;
+            transition: var(--transicao);
+            opacity: 0.6;
+        }
+
+        .carrinho-item-remover:hover { opacity: 1; transform: scale(1.1); }
+
+        /* ========== FORMULÁRIO DE PEDIDO PREMIUM ========== */
         .form-pedido {
-            margin-top: 20px;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px dashed #f0f0f0;
         }
 
         .form-pedido h4 {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: var(--verde-principal);
-        }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="number"],
-        .form-group input[type="tel"],
-        .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
+            font-size: 1.2rem;
+            font-weight: 700;
         }
 
         .tipo-pedido {
             display: flex;
-            gap: 20px;
+            background: #f4f4f4;
+            padding: 6px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+            gap: 6px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .tipo-pedido label {
+            flex: 1;
+            padding: 14px 10px;
+            border-radius: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transicao);
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--texto-mutado);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: transparent;
+            user-select: none;
+        }
+
+        .tipo-pedido input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .tipo-pedido label:has(input:checked) {
+            background: white;
+            color: var(--verde-principal);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .tipo-pedido label:hover:not(:has(input:checked)) {
+            background: rgba(255,255,255,0.5);
+        }
+
+        .form-group {
             margin-bottom: 20px;
         }
 
-        .carrinho-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--texto-mutado);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .carrinho-item-info {
-            flex: 1;
-        }
-
-        .carrinho-item-info h4 {
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px 18px;
+            border: 2px solid #f0f0f0;
+            border-radius: 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transicao);
+            background: #fafafa;
             color: var(--texto-escuro);
         }
-
-        .carrinho-item-preco {
-            color: var(--dourado-escuro);
-            font-weight: bold;
+        
+        .form-group input:focus, 
+        .form-group select:focus {
+            border-color: var(--verde-claro);
+            background: white;
+            box-shadow: 0 0 0 5px rgba(44, 110, 73, 0.05);
         }
 
-        .carrinho-item-remover {
-            background: none;
-            border: none;
-            color: red;
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-left: 10px;
+        .form-group input::placeholder {
+            color: #ccc;
         }
 
         .carrinho-total {
-            margin-top: 10px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--texto-escuro);
+            margin-top: 15px;
+            padding: 5px 0;
             display: flex;
             justify-content: space-between;
-            padding-top: 10px;
+            color: var(--texto-mutado);
+            font-weight: 500;
         }
 
         .carrinho-entrega {
-            font-size: 1rem;
-            color: #555;
+            padding: 5px 0;
             display: flex;
             justify-content: space-between;
-            padding: 5px 0;
+            color: var(--texto-mutado);
+            font-size: 0.95rem;
         }
 
         .carrinho-total.final {
-            margin-top: 10px;
-            font-size: 1.5rem;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid #f8f8f8;
+            font-size: 2rem;
+            font-weight: 800;
             color: var(--verde-principal);
-            border-top: 2px dashed var(--dourado);
-            padding-top: 10px;
-        }
-
-        .carrinho-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
         }
 
         .btn-finalizar {
-            background-color: var(--dourado);
-            color: var(--verde-principal);
-            flex: 1;
-            padding: 12px;
+            width: 100%;
+            margin-top: 30px;
+            padding: 18px;
+            border-radius: 18px;
+            background: var(--verde-principal);
+            color: white;
             border: none;
-            border-radius: 40px;
-            font-weight: bold;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
             cursor: pointer;
+            transition: var(--transicao);
+        }
+
+        .btn-finalizar:hover {
+            background: var(--verde-claro);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(44, 110, 73, 0.3);
         }
 
         .btn-fechar {
-            background-color: #ddd;
-            color: #333;
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 40px;
-            font-weight: bold;
+            width: 100%;
+            margin-top: 15px;
+            padding: 16px;
+            border-radius: 18px;
+            background: var(--creme);
+            color: var(--texto-mutado);
+            border: 1.5px solid #f0f0f0;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
+            transition: var(--transicao);
         }
+
+        .btn-fechar:hover {
+            background: var(--cinza-claro);
+            color: var(--verde-principal);
+            border-color: #e0e0e0;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            color: white;
+        }
+
+        .radio-group-horizontal {
+            display: flex;
+            gap: 30px;
+            background: rgba(26, 67, 43, 0.05);
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-top: 8px;
+            border: 1px solid rgba(26, 67, 43, 0.1);
+        }
+
+        .radio-group-horizontal label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--verde-principal);
+            font-size: 0.95rem;
+        }
+
+        .radio-group-horizontal input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--verde-principal);
+        }
+
+
+
 
         /* ========== FOOTER ========== */
         footer {
-            background-color: var(--verde-principal);
+            background: var(--verde-principal);
+            padding: 80px 0 40px;
             color: white;
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 60px;
             border-top: 4px solid var(--dourado);
+            text-align: left;
         }
 
         .footer-content {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
         }
 
-        .footer-content div {
-            max-width: 300px;
-        }
-
-        .footer-content i {
+        .footer-content h3 {
             color: var(--dourado);
-            margin-right: 8px;
+            margin-bottom: 25px;
+            font-size: 1.4rem;
         }
 
         .social-icons {
             display: flex;
             gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons i {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.4rem;
+            transition: var(--transicao);
+            cursor: pointer;
+        }
+
+        .social-icons i:hover {
+            background: var(--dourado);
+            color: var(--verde-principal);
+            transform: translateY(-5px);
+        }
+
+        /* Animação Smooth Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ========== RESPONSIVIDADE ========== */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-            nav ul {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .banner h2 {
-                font-size: 2rem;
-            }
+            .banner { height: 70vh; min-height: 500px; }
+            .banner h2 { font-size: 3rem; letter-spacing: -1px; }
+            .banner p { font-size: 1.1rem; }
+            .banner-card { padding: 40px 25px; }
+            .btn { padding: 18px 35px; font-size: 0.9rem; }
+            .header-content { flex-direction: column; gap: 20px; }
+            nav ul { gap: 15px; flex-wrap: wrap; justify-content: center; }
         }
+
+
     </style>
-    <!-- Font Awesome para ícones -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
 
@@ -528,8 +817,8 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <img src="logo_coffe.jpeg" alt="Logo Coffe Ranch">
-                <h1>Coffe <span>Ranch</span></h1>
+                <img src="logo_coffe.jpeg" alt="Logo Coffee Ranch">
+                <h1>Coffee <span>Ranch</span></h1>
             </div>
             <nav>
                 <ul>
@@ -552,11 +841,19 @@
     <!-- ========== BANNER ========== -->
     <section class="banner">
         <div class="container">
-            <h2>O melhor cafe</h2>
-            <p>Grãos selecionados, sabor inesquecível</p>
-            <a href="#produtos" class="btn">Conheça nossos cafés</a>
+            <div class="banner-card">
+                <span class="banner-tagline">Sabor do Campo</span>
+                <h2>O melhor café<br>da região</h2>
+                <p>Grãos selecionados com carinho para proporcionar uma experiência inesquecível a cada xícara.</p>
+                <div class="banner-actions">
+                    <a href="#produtos" class="btn">Explorar Cardápio</a>
+                </div>
+            </div>
+
         </div>
     </section>
+
+
 
     <!-- ========== PRODUTOS ========== -->
     <section id="produtos" class="container">
@@ -602,50 +899,71 @@
             <form id="pedido-form" class="form-pedido">
                 <h4>Detalhes do Pedido</h4>
                 <div class="form-group tipo-pedido">
-                    <label><input type="radio" name="tipoPedido" value="local" checked> Consumo no Local</label>
-                    <label><input type="radio" name="tipoPedido" value="entrega"> Entrega</label>
+                    <label>
+                        <input type="radio" name="tipoPedido" value="local" checked>
+                        <i class="fas fa-utensils"></i> Consumo no Local
+                    </label>
+                    <label>
+                        <input type="radio" name="tipoPedido" value="entrega">
+                        <i class="fas fa-motorcycle"></i> Entrega
+                    </label>
                 </div>
 
                 <div id="form-local">
                     <div class="form-group">
-                        <label for="nome-local">Seu Nome:</label>
+                        <label for="nome-local"><i class="fas fa-user"></i> Seu Nome:</label>
                         <input type="text" id="nome-local" placeholder="Como podemos te chamar?">
                     </div>
                     <div class="form-group">
-                        <label for="mesa-local">Número da Mesa:</label>
+                        <label for="mesa-local"><i class="fas fa-chair"></i> Número da Mesa:</label>
                         <input type="number" id="mesa-local" placeholder="Ex: 12">
                     </div>
                 </div>
 
                 <div id="form-entrega" style="display: none;">
                     <div class="form-group">
-                        <label for="nome-entrega">Seu Nome:</label>
+                        <label for="nome-entrega"><i class="fas fa-user"></i> Seu Nome:</label>
                         <input type="text" id="nome-entrega" placeholder="Nome completo">
                     </div>
                     <div class="form-group">
-                        <label for="telefone-entrega">Telefone/WhatsApp:</label>
+                        <label for="telefone-entrega"><i class="fas fa-phone"></i> Telefone/WhatsApp:</label>
                         <input type="tel" id="telefone-entrega" placeholder="(99) 99999-9999">
                     </div>
                     <div class="form-group">
-                        <label for="endereco-entrega">Endereço e Bairro:</label>
+                        <label for="endereco-entrega"><i class="fas fa-map-marker-alt"></i> Endereço e Bairro:</label>
                         <input type="text" id="endereco-entrega" placeholder="Rua, Avenida, etc.">
                     </div>
                     <div class="form-group">
-                        <label for="numero-casa-entrega">Número e Complemento:</label>
+                        <label for="numero-casa-entrega"><i class="fas fa-home"></i> Número/Comp.:</label>
                         <input type="text" id="numero-casa-entrega" placeholder="Ex: 42B, Apto 101">
                     </div>
                     <div class="form-group">
-                        <label for="pagamento-entrega">Forma de Pagamento:</label>
+                        <label for="pagamento-entrega"><i class="fas fa-credit-card"></i> Pagamento:</label>
                         <select id="pagamento-entrega">
                             <option value="Dinheiro">Dinheiro</option>
                             <option value="Cartão">Cartão de Crédito/Débito</option>
                             <option value="PIX">PIX</option>
                         </select>
                     </div>
-                    <div class="form-group" id="troco-group" style="display: none;">
-                        <label for="troco-para">Troco para (R$):</label>
-                        <input type="number" id="troco-para" placeholder="Ex: 50">
+                    <!-- Novo Fluxo de Troco -->
+                    <div class="form-group" id="pergunta-troco-group" style="display: none;">
+                        <label><i class="fas fa-question-circle"></i> Precisa de troco?</label>
+                        <div class="radio-group-horizontal">
+                            <label><input type="radio" name="precisaTroco" value="nao" checked> Não</label>
+                            <label><input type="radio" name="precisaTroco" value="sim"> Sim</label>
+                        </div>
                     </div>
+
+                    <div class="form-group" id="troco-valor-group" style="display: none;">
+                        <label for="troco-para"><i class="fas fa-coins"></i> Troco para (R$):</label>
+                        <input type="number" id="troco-para" placeholder="Ex: 50">
+                        <div id="troco-resultado" style="margin-top: 15px; font-weight: 800; color: var(--verde-principal); font-size: 1.25rem; display: none; background: #fffbe6; padding: 15px; border-radius: 12px; border: 2px solid var(--amarelo); text-align: center; box-shadow: 0 5px 15px rgba(249, 194, 46, 0.1);">
+                            Troco: R$ 0,00
+                        </div>
+                    </div>
+
+
+
                 </div>
             </form>
 
@@ -699,7 +1017,7 @@
                 <i class="fab fa-whatsapp" style="color: var(--dourado);"></i>
             </div>
         </div>
-        <p style="margin-top: 20px;">&copy; 2026 Coffe Ranch - Desenvolvido por THYESKO MENÃO</p>
+        <p style="margin-top: 20px;">&copy; 2026 Coffee Ranch - Desenvolvido por THYESKO MENÃO</p>
     </footer>
 
     <!-- ========== SCRIPT ========== -->
@@ -911,7 +1229,7 @@
                 nome: "Batida de Whey de Morango",
                 descricao: "Shake proteico cremoso feito com Whey Protein sabor morango.",
                 preco: 18.90,
-                imagem: '<img src="wheymorango.jpg" alt="Batida de Whey de Morango">',
+                imagem: '<img src="whey3.jpg" alt="Batida de Whey de Morango">',
                 categoria: "bebida"
             },
             {
@@ -1145,9 +1463,31 @@
         const formEntrega = document.getElementById('form-entrega');
         const radiosTipoPedido = document.querySelectorAll('input[name="tipoPedido"]');
         const pagamentoSelectEl = document.getElementById('pagamento-entrega');
-        const trocoGroupEl = document.getElementById('troco-group');
+        const trocoParaEl = document.getElementById('troco-para');
+        const trocoResultadoEl = document.getElementById('troco-resultado');
+
+        // ========== CALCULAR TROCO ==========
+        function calcularTroco() {
+            const subtotal = carrinho.reduce((acc, item) => acc + (item.quantidade * item.preco), 0);
+            const total = subtotal + (tipoPedido === 'entrega' && subtotal > 0 ? TAXA_ENTREGA : 0);
+            const valorPago = parseFloat(trocoParaEl.value);
+
+            if (valorPago > total) {
+                const troco = valorPago - total;
+                trocoResultadoEl.textContent = `Troco: R$ ${troco.toFixed(2)}`;
+                trocoResultadoEl.style.display = 'block';
+                return troco;
+            } else {
+                trocoResultadoEl.style.display = 'none';
+                return 0;
+            }
+        }
+
+        // Listener para o campo de troco
+        trocoParaEl.addEventListener('input', calcularTroco);
 
         // ========== RENDERIZAR PRODUTOS ==========
+
         function renderizarProdutos() {
             listaProdutosEl.innerHTML = '';
             listaDocesEl.innerHTML = '';
@@ -1275,7 +1615,13 @@
                 carrinhoEntregaDiv.style.display = 'none';
             }
             carrinhoTotalEl.textContent = `R$ ${totalFinal.toFixed(2)}`;
+
+            // Atualizar troco se houver valor informado
+            if (typeof calcularTroco === 'function') {
+                calcularTroco();
+            }
         }
+
 
         // ========== ABRIR/FECHAR CARRINHO ==========
         function abrirCarrinho() {
@@ -1319,11 +1665,34 @@
                 detalhesPedido = `*Tipo:* Entrega\n*Nome:* ${nome}\n*Telefone:* ${telefone}\n*Endereço:* ${endereco}, Nº ${numeroCasa}\n*Pagamento:* ${pagamento}`;
 
                 if (pagamento === 'Dinheiro') {
-                    const trocoPara = document.getElementById('troco-para').value;
-                    if (trocoPara) {
-                        detalhesPedido += `\n*Troco para:* R$ ${parseFloat(trocoPara).toFixed(2)}`;
+                    const precisaTroco = document.querySelector('input[name="precisaTroco"]:checked').value;
+                    
+                    if (precisaTroco === 'sim') {
+                        const trocoParaInput = document.getElementById('troco-para').value;
+                        if (!trocoParaInput) {
+                            alert('Por favor, informe com quanto irá pagar para calcularmos o troco (Ex: 50).');
+                            return;
+                        }
+
+                        const valorPago = parseFloat(trocoParaInput);
+                        const subtotal = carrinho.reduce((acc, item) => acc + (item.quantidade * item.preco), 0);
+                        const total = subtotal + (tipoPedido === 'entrega' && subtotal > 0 ? TAXA_ENTREGA : 0);
+                        
+                        if (valorPago < total) {
+                            alert(`O valor (R$ ${valorPago.toFixed(2)}) é menor que o total do pedido (R$ ${total.toFixed(2)}).`);
+                            return;
+                        }
+
+                        const troco = valorPago - total;
+                        detalhesPedido += `\n*Pagamento:* Dinheiro (R$ ${valorPago.toFixed(2)})`;
+                        detalhesPedido += `\n*LEVAR TROCO DE:* R$ ${troco.toFixed(2)}`;
+                    } else {
+                        detalhesPedido += `\n*Pagamento:* Dinheiro (Não precisa de troco)`;
                     }
                 }
+
+
+
                 detalhesPedido += '\n\n';
             }
 
@@ -1331,7 +1700,7 @@
             const subtotal = carrinho.reduce((acc, item) => acc + (item.quantidade * item.preco), 0);
             const totalFinal = subtotal + (tipoPedido === 'entrega' && subtotal > 0 ? TAXA_ENTREGA : 0);
 
-            const mensagemFinal = `*--- NOVO PEDIDO COFFE RANCH ---*\n\n` +
+            const mensagemFinal = `*--- NOVO PEDIDO COFFEE RANCH ---*\n\n` +
                                 `${detalhesPedido}` +
                                 `*Itens do Pedido:*\n${itensPedido}\n\n` +
                                 `*Subtotal:* R$ ${subtotal.toFixed(2)}\n` +
@@ -1346,8 +1715,10 @@
             // Limpar tudo após finalizar
             carrinho = [];
             document.getElementById('pedido-form').reset();
-            trocoGroupEl.style.display = 'none';
+            document.getElementById('pergunta-troco-group').style.display = 'none';
+            document.getElementById('troco-valor-group').style.display = 'none';
             tipoPedido = 'local';
+
             document.querySelector('input[name="tipoPedido"][value="local"]').checked = true;
             formLocal.style.display = 'block';
             formEntrega.style.display = 'none';
@@ -1360,6 +1731,38 @@
             renderizarProdutos();
             atualizarCarrinho();
 
+            // ========== ANIMAÇÕES DE REVELAÇÃO ==========
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Adicionar classes de revelação
+            document.querySelectorAll('section, .banner .container').forEach(el => {
+                el.classList.add('reveal');
+                observer.observe(el);
+            });
+
+            // Melhorar transição do carrinho
+            window.abrirCarrinho = function() {
+                carrinhoOverlay.style.display = 'flex';
+                setTimeout(() => carrinhoOverlay.classList.add('active'), 10);
+            }
+
+            window.fecharCarrinho = function() {
+                carrinhoOverlay.classList.remove('active');
+                setTimeout(() => carrinhoOverlay.style.display = 'none', 500);
+            }
+
             // Fechar carrinho ao clicar fora do modal
             carrinhoOverlay.addEventListener('click', (e) => {
                 if (e.target === carrinhoOverlay) {
@@ -1371,12 +1774,15 @@
             radiosTipoPedido.forEach(radio => {
                 radio.addEventListener('change', (e) => {
                     tipoPedido = e.target.value;
+                    const fLocal = document.getElementById('form-local');
+                    const fEntrega = document.getElementById('form-entrega');
+                    
                     if (tipoPedido === 'local') {
-                        formLocal.style.display = 'block';
-                        formEntrega.style.display = 'none';
+                        fLocal.style.display = 'block';
+                        fEntrega.style.display = 'none';
                     } else {
-                        formLocal.style.display = 'none';
-                        formEntrega.style.display = 'block';
+                        fLocal.style.display = 'none';
+                        fEntrega.style.display = 'block';
                     }
                     atualizarCarrinho(); // Recalcula o total com/sem taxa
                 });
@@ -1384,12 +1790,32 @@
 
             // Listener para mostrar/esconder campo de troco
             pagamentoSelectEl.addEventListener('change', (e) => {
+                const perguntaTrocoGroup = document.getElementById('pergunta-troco-group');
+                const trocoValorGroup = document.getElementById('troco-valor-group');
+                
                 if (e.target.value === 'Dinheiro') {
-                    trocoGroupEl.style.display = 'block';
+                    perguntaTrocoGroup.style.display = 'block';
                 } else {
-                    trocoGroupEl.style.display = 'none';
+                    perguntaTrocoGroup.style.display = 'none';
+                    trocoValorGroup.style.display = 'none';
                 }
             });
+
+            // Listener para a pergunta se precisa de troco
+            const radiosPrecisaTroco = document.querySelectorAll('input[name="precisaTroco"]');
+            radiosPrecisaTroco.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    const trocoValorGroup = document.getElementById('troco-valor-group');
+                    if (e.target.value === 'sim') {
+                        trocoValorGroup.style.display = 'block';
+                    } else {
+                        trocoValorGroup.style.display = 'none';
+                        document.getElementById('troco-para').value = '';
+                        document.getElementById('troco-resultado').style.display = 'none';
+                    }
+                });
+            });
+
         });
     </script>
 </body>
